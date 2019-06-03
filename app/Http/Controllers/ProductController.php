@@ -96,9 +96,9 @@ class ProductController extends Controller
         $aData  = array(
             'refersion_public_key'  => \Config::get('constants.refersion_public_key'),
             'refersion_secret_key'  => \Config::get('constants.refersion_secret_key'),
-            'affiliate_code'        => $sAffiliateId,
+            'affiliate_code'        => '6905',
             'type'                  => 'SKU',
-            'trigger'               => 'test'
+            'trigger'               => $sAffiliateId
         );
 
         $oPayload   = json_encode($aData);
@@ -130,10 +130,13 @@ class ProductController extends Controller
         $aItem          = json_decode($oData, TRUE);
         $aVariantSku    = $this->getVariantSku($aItem['variants']);
         $aRefersionSku  = $this->filterSku($aVariantSku);
+        $aResult        = array();
 
         foreach ($aRefersionSku as $sSku) {
             $sId        = $this->getAffiliateId($sSku);
-            Log::info($this->createConversionTrigger($sId));
+            $aResult[]  = $this->createConversionTrigger($sId);
         }
+
+        Log::info($aResult);
     }
 }
