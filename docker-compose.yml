@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+    restart: always
+    volumes:
+      - './public:/var/www/html'
+    ports:
+      - '8000:80'
+      
