@@ -41,6 +41,12 @@ class ProductController extends Controller
         }, $aVariants);
     }
 
+    /**
+     * Filter out Refersion SKUs from variants
+     *
+     * @param array $aVariantSku
+     * @return array
+     */
     private function filterSku(array $aVariantSku) : array
     {
         $sRefersionSkuCode = 'rfsnadid';
@@ -88,11 +94,11 @@ class ProductController extends Controller
         $sUrl   = 'https://www.refersion.com/api/new_affiliate_trigger';
 
         $aData  = array(
-            "refersion_public_key"  => \Config::get('constants.refersion_public_key'),
-            "refersion_secret_key"  => \Config::get('constants.refersion_secret_key'),
-            "affiliate_code"        => $sAffiliateId,
-            "type"                  => "SKU",
-            "trigger"               => "alexmarkov+gutmann@gmail.com"
+            'refersion_public_key'  => \Config::get('constants.refersion_public_key'),
+            'refersion_secret_key'  => \Config::get('constants.refersion_secret_key'),
+            'affiliate_code'        => $sAffiliateId,
+            'type'                  => 'SKU',
+            'trigger'               => 'test'
         );
 
         $oPayload   = json_encode($aData);
@@ -118,7 +124,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $oRequest)
+    public function automateConversionTrigger(Request $oRequest)
     {
         $oData          = $oRequest->getContent();
         $aItem          = json_decode($oData, TRUE);

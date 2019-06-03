@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', 'ProductController@create');
+Route::post('/', 'ProductController@automateConversionTrigger');
