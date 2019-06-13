@@ -94,8 +94,8 @@ class ProductController extends Controller
         $sUrl   = 'https://www.refersion.com/api/new_affiliate_trigger';
 
         $aData  = array(
-            'refersion_public_key'  => \Config::get('constants.refersion_public_key'),
-            'refersion_secret_key'  => \Config::get('constants.refersion_secret_key'),
+            'refersion_public_key'  => env('REFERSION_PUBLIC_KEY'),
+            'refersion_secret_key'  => env('REFERSION_SECRET_KEY'),
             'affiliate_code'        => '6905',
             'type'                  => 'SKU',
             'trigger'               => $sAffiliateId
